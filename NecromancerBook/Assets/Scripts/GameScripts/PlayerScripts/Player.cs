@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     public void Awake()
     {
+        
         animator = gameObject.GetComponent<Animator>();
         name = gameObject.name;
     }
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         AdjustHp();
-
+        
         if (Input.GetKey(KeyCode.B))
         {
             TakeDamage(5);

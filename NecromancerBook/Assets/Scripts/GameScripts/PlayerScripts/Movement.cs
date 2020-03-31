@@ -90,11 +90,11 @@ public class Movement : MonoBehaviour
         
         if (isLookingRight != true)
         {
-            characterScale.x = -0.7236f;
+            characterScale.x = -1;
         }
         else if (isLookingRight == true)
         {
-            characterScale.x = 0.7236f;
+            characterScale.x = 1;
         }
         transform.localScale = characterScale;
         
