@@ -6,34 +6,28 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     public string PlayerName;
-
+    
+    public Health health;
     public float curHP;
     public float maxHP;
-
     public float curMP;
     public float maxMP;
-
     public float curBones;
-
-    
-
     public void Awake()
     {
-        
         animator = gameObject.GetComponent<Animator>();
-        name = gameObject.name;
+        PlayerName = gameObject.name;
+
+        health = new Health();
+        health.Awake();
+        maxHP = health.playerMaxHp;
+        curHP = health.playerCurHp;
     }
 
-   
-
     public void TakeDamage(float dmg)
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            animator.SetTrigger("Hit");
-            curHP -= dmg;
-        }
-        
+    {   
+        health.TakeDamage(dmg);
+        animator.SetTrigger("Hit");   
     }
 
     public void Death()
@@ -46,23 +40,19 @@ public class Player : MonoBehaviour
 
     public void AdjustHp()
     {
+        maxHP = health.playerMaxHp;
+        curHP = health.playerCurHp;
         if (curHP > maxHP)
         {
-            curHP = maxHP;
+          curHP  = maxHP;
         }
-        else if (curHP < 0)
+        else if (curHP <= 0)
         {
             curHP = 0;
-
-        }
-        else if (curHP == 0)
-        {
             Death();
         }
 
     }
-
-    
 
     private void Update()
     {
@@ -70,8 +60,12 @@ public class Player : MonoBehaviour
         
         if (Input.GetKey(KeyCode.B))
         {
-            TakeDamage(5);
+            TakeDamage(1);
         }
 
+        if(Input.GetKey(KeyCode.A))
+        {
+            health.AddNewGlobe();
+        }
     }
 }
