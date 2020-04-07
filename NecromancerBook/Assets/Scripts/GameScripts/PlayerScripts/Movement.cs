@@ -6,7 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Movement : MonoBehaviour
 {
     public ParticleSystem trailParticles;
-
+    
     public float speed;
 
     [Range (0, 10)]
@@ -119,10 +119,10 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        
         isJumping = true;
     }
 
+    
     public void Animate()
     {
 
