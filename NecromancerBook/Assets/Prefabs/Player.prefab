@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6602600135286015037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5707037362346366277}
+  - component: {fileID: 8583394183062729143}
+  - component: {fileID: 1288898879262395235}
+  m_Layer: 8
+  m_Name: CastPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5707037362346366277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6602600135286015037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.1, y: -0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6836990672167315182}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8583394183062729143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6602600135286015037}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a8bd85109e345da835b582e5d910f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6836990672167315173}
+  spells:
+  - {fileID: 11400000, guid: 93d7c307b4a2445b986a112e7aae2550, type: 2}
+  - {fileID: 11400000, guid: 54a7a2faa7a5e4c61aba49a4b6abc31d, type: 2}
+  castingSpell: 0
+  castPoint: {fileID: 0}
+  spellPrefab: {fileID: 6276741721807400034, guid: 128d7776e4b1845ecaefab74c99b4f55,
+    type: 3}
+  paid: 0
+  isActive: 0
+--- !u!114 &1288898879262395235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6602600135286015037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30df92ee72d004577974461201e8d2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6836990672167315173}
+  spellPrefab: {fileID: 6276741721807400034, guid: 128d7776e4b1845ecaefab74c99b4f55,
+    type: 3}
+  spellBook:
+  - {fileID: 11400000, guid: 93d7c307b4a2445b986a112e7aae2550, type: 2}
+  - {fileID: 11400000, guid: 54a7a2faa7a5e4c61aba49a4b6abc31d, type: 2}
+  castPoint: {fileID: 5707037362346366277}
+  isCasting: 0
 --- !u!1 &6836990671401172021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,7 +4812,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1589653
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -9667,7 +9741,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1589653
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -9728,6 +9802,7 @@ Transform:
   m_Children:
   - {fileID: 6836990671715468633}
   - {fileID: 6836990671517103378}
+  - {fileID: 5707037362346366277}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9822,6 +9897,7 @@ MonoBehaviour:
   fallMultiplier: 0
   lowJumpMultiplier: 0
   rb: {fileID: 0}
+  castPoint: {fileID: 6602600135286015037}
   isJumping: 0
   isMoving: 0
   isLookingRight: 0

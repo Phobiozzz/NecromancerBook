@@ -9,19 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75c61351f4db145319c5eaff6a759be2, type: 3}
+  m_Script: {fileID: 11500000, guid: 194a529496a054eba8e58475da2dcade, type: 3}
   m_Name: PoisonArrow
   m_EditorClassIdentifier: 
-  spellName: PoisonArrow
+  Animator: {fileID: 9100000, guid: 92ac5faf591534c68a62e580f5b680e0, type: 2}
+  spellName: Poison Arrow
   description: 
-  sprite: {fileID: 0}
-  spellType: 0
-  spellRangeType: 1
-  timeType: 0
-  magicSchool: 0
-  costType: 0
-  costAmount: 5
-  power: 3
-  coolDown: 1
-  range: 1
-  effectTime: 3
+  power: 20
+  isKnown: 0
+  castType: 0
+  spellType: 1
+  speed: 2
+  manaCost: 1
+  healthCost: 0
+  bonesCost: 0
+  cooldown: 1
+  castTime: 0.5
+  lifeTime: 1.5
+  effectTime: 1

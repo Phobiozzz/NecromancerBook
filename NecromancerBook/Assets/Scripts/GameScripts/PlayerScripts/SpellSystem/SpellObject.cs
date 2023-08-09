@@ -1,71 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-[CreateAssetMenu(fileName = "NewSpell", menuName ="Spell"), ]
+[CreateAssetMenu(fileName = "New Spell", menuName = "Spell")]
 public class SpellObject : ScriptableObject
 {
+    public RuntimeAnimatorController Animator;
     public string spellName;
     public string description;
-
-    public Sprite sprite;
-
-    
-
-    public SpellType spellType;
-    public SpellRangeType spellRangeType;
-    public TimeType timeType;
-    public MagicSchool magicSchool;
-
-    public CostType costType;
-    public float costAmount;
-
     public float power;
+    public bool isKnown;
+    public CastType castType;
+    public SpellType spellType;
 
-    public float coolDown;
-    public float range;
+    public float speed;
+
+    public float manaCost;
+    public float healthCost;
+    public float bonesCost;
+
+    public float cooldown;
+    public float castTime;
+    public float lifeTime;
     public float effectTime;
 
+   
 
-    
-    
 }
-
-
+public enum CastType
+{
+    Range,
+    Self
+} 
 public enum SpellType
 {
-    Attaking,
-    Buff,
-    Debuf,
-    Restoring
+    Heal,
+    Damage
 }
 
-public enum SpellRangeType
+public enum EffectTime
 {
-    Self,
-    Enemy,
-    Ally,
-    AOE
-}
-
-public enum MagicSchool
-{
-    Necromancy,
-    NaturalMagic
-}
-
-public enum TimeType
-{
-    Immidiately,
-    Dot,
-    Chanelling,
-    Mixed
+    Point,
+    OverTime
 }
 
 public enum CostType
 {
-    Mana,
-    Health,
-    Bones
+    Mana, Health, Bones
+}
+
+public class ResourceCost
+{
+   public CostType type;
+    public float cost;
 }

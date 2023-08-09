@@ -30,11 +30,11 @@ public class Health
             healthBar.AddGlobe();
             CalculatePlayerMaxHp();
             
-            Debug.Log("There is a " + globesCount + "globes now.");
+            //Debug.Log("There is a " + globesCount + "globes now.");
         }
         else if(globesCount > globesMaxCount)
         {
-            Debug.Log("Cannot create new globe. HP bar is full now. ");
+            //Debug.Log("Cannot create new globe. HP bar is full now. ");
         }
     }
 
@@ -48,7 +48,7 @@ public class Health
         }
         else if (globesCount <= 0)
         {
-            Debug.Log("HP bar is empty. cannot delete globe");
+            //Debug.Log("HP bar is empty. cannot delete globe");
         }
     }
     public void CalculatePlayerMaxHp()

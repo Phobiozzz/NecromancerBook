@@ -7,40 +7,37 @@ public class Movement : MonoBehaviour
 {
     public ParticleSystem trailParticles;
     
-    public float speed;
+    public int speed;
 
     [Range (0, 10)]
-    public float jumpPower;
+    public int jumpPower;
     public float move;
 
-    public float fallMultiplier;
-    public float lowJumpMultiplier;
     public Rigidbody2D rb;
-
 
     public bool isJumping;
     public bool isMoving;
-    public bool isLookingRight;
+    public bool isLookingRight = true;
 
     public Animator animator;
 
     public bool isAlive;
 
-    public float CoolDownCounter;
-    bool canAttack;
     bool canMove;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        isLookingRight = true;
         isJumping = true;
         isAlive = true;
+        isLookingRight = true;
+        speed = 1;
+        jumpPower = 4;
     }
 
-    void Run()
+    void Run(float move)
     {
-        move = CrossPlatformInputManager.GetAxis("Horizontal"); // Input.GetAxis("Horizontal");
+        // Input.GetAxis("Horizontal");
 
             if (move != 0)
             {
@@ -48,17 +45,13 @@ public class Movement : MonoBehaviour
                 if (move > 0)
                 {
                     move = 1;
-                    isLookingRight = true;
                 }
                 else if (move < 0)
                 {
                     move = -1;
-                    isLookingRight = false;
                 }
-
-                
                 Vector3 horizontal = new Vector3(move, 0.0f, 0.0f);
-                transform.position = transform.position + horizontal * speed * Time.deltaTime ;
+                transform.position = transform.position + horizontal * speed * Time.deltaTime;
 
             }
             else
@@ -74,7 +67,6 @@ public class Movement : MonoBehaviour
         {
             if (isJumping != true)
             {
-                
                 rb.velocity = Vector2.up * jumpPower;
             }
   
@@ -84,22 +76,11 @@ public class Movement : MonoBehaviour
     }
 
     void Flip()
-    {
-       
-        Vector3 characterScale = transform.localScale;
-        
-        if (isLookingRight != true)
-        {
-            characterScale.x = -1;
-        }
-        else if (isLookingRight == true)
-        {
-            characterScale.x = 1;
-        }
-        transform.localScale = characterScale;
-        
+    { 
+        isLookingRight = !isLookingRight;
+        transform.Rotate(0,180,0);
     }
-
+        
     public void Attack()
     {
 
@@ -113,7 +94,7 @@ public class Movement : MonoBehaviour
         if (collision.transform.tag == "Ground")
         {
             isJumping = false;
-            //Debug.Log("isGrounded");
+            Debug.Log("isGrounded");
         }
     }
 
@@ -140,26 +121,13 @@ public class Movement : MonoBehaviour
             
         }
     }
-
-    public void SetCoolDownCounter()
-    {
-        CoolDownCounter -= 1 * Time.deltaTime;
-
-        if (CoolDownCounter <= 0)
-        {
-            CoolDownCounter = 0;
-            canAttack = true;
-        }
-        else
-        {
-            canAttack = false;
-        }
-    }
-
     void Update()
     {
         if (isAlive)
         {
+            if(move < 0 && isLookingRight){Flip();}
+            if(move > 0 && !isLookingRight){Flip();}
+
             if (this.animator.GetCurrentAnimatorStateInfo(0).IsName("mainAttack"))
             {
                 canMove = false;
@@ -174,31 +142,18 @@ public class Movement : MonoBehaviour
             {
                 Jump();
             }
-            
-            Flip();
 
-            SetCoolDownCounter();
-
-
-            if (CrossPlatformInputManager.GetButtonDown("Fire"))
-            {
-                if (canAttack)
-                {
-                    Attack();
-                    CoolDownCounter += 0.5f;
-                }
-
-            }
         }
     }
 
     public void FixedUpdate()
     {
+        move = CrossPlatformInputManager.GetAxis("Horizontal"); 
         if (isAlive)
         {
             if (canMove)
             {
-                Run();
+                Run(move);
 
                 if (isMoving)
                 {
@@ -216,7 +171,7 @@ public class Movement : MonoBehaviour
                 }
             }
         }
-
+       
         Animate();
        
     }

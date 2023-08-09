@@ -8,12 +8,17 @@ public class LevelCreator : MonoBehaviour
 
     public GameObject PlayerPrefab;
     public GameObject[] level; 
+    public PlatformInfo[] levelInfo;
     public int platformsCount;
 
     public GameObject platformParent;
     public Vector3 platformParentPosition;
    
     public Sprite[] tileset = new Sprite[6];
+    public Sprite spikes;
+
+    public Material litMaterial;
+    public Material unlitMaterial;
     
 
     public void Start()
@@ -36,6 +41,13 @@ public class LevelCreator : MonoBehaviour
             
         }
         Instantiate(PlayerPrefab, level[0].transform.position + new Vector3(0, tileSize ,0), Quaternion.identity);
+        for(int curPlatform =0 ; curPlatform < level.Length; curPlatform++)
+        {
+            if(level[curPlatform].GetComponent<PlatformInfo>().length > 2)
+            {
+                
+            }
+        }
     }
     public void spawnPlatform(Vector3 _platformStartingPosition)
     { 
@@ -65,12 +77,12 @@ public class LevelCreator : MonoBehaviour
                 spriteToDraw = 2;
             }
             SpawnTile(platformParent, topTilePosition,tileset[spriteToDraw], true); 
-            Debug.Log("Top tile position is " + topTilePosition);
+            //Debug.Log("Top tile position is " + topTilePosition);
             topTilePosition.y -= tileSize;
             for(int h = 0; h < info.higth; h++)
             {
                 
-                Debug.Log("Bottom tile posirion is " + topTilePosition);
+                //Debug.Log("Bottom tile posirion is " + topTilePosition);
                 SpawnTile(platformParent, topTilePosition, tileset[spriteToDraw + 3], false);
                 topTilePosition.y -= tileSize;
             }
@@ -94,15 +106,18 @@ public class LevelCreator : MonoBehaviour
        render.sortingLayerName = "Ground";
        render.sortingOrder = 1;
        tile.transform.tag = "Ground";
+       
        //Add collider if its top tile
        if(_isTop)
        {
            tile.AddComponent<BoxCollider2D>();
+           
        }
     }
 
    
 }
+
 
 public class PlatformInfo
 {

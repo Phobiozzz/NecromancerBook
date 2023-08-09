@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 194a529496a054eba8e58475da2dcade, type: 3}
+  m_Name: ManaBuff
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 9100000, guid: 2e869cc0945a74160ae780df75feac94, type: 2}
+  spellName: ManaBuff
+  description: 
+  power: 20
+  isKnown: 0
+  castType: 1
+  spellType: 0
+  speed: 0
+  manaCost: 0
+  healthCost: 15
+  bonesCost: 0
+  cooldown: 3
+  castTime: 0.1
+  lifeTime: 5

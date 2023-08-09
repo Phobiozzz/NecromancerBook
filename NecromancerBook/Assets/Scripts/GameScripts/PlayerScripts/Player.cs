@@ -6,14 +6,14 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     public string PlayerName;
-    
+
     public Health health;
     public float curHP;
     public float maxHP;
     public float curMP;
     public float maxMP;
     public float curBones;
-    public void Awake()
+    public void Start()
     {
         animator = gameObject.GetComponent<Animator>();
         PlayerName = gameObject.name;
